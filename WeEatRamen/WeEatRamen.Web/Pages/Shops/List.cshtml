@@ -1,0 +1,28 @@
+﻿@page
+@model WeEatRamen.Web.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h2>Browse shops</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Soup base</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    @foreach (var shop in Model.Shops)
+    {
+        <tr>
+            <td>@shop.Name</td>
+            <td>@shop.Location</td>
+            <td>@shop.Soup</td>
+            <td>@shop.Rating</td>
+        </tr>
+    }
+</table>
+
