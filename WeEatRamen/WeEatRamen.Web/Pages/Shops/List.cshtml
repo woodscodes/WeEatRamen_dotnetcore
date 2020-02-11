@@ -1,10 +1,23 @@
-﻿@page
+﻿@page 
 @model WeEatRamen.Web.ListModel
 @{
     ViewData["Title"] = "List";
 }
 
 <h2>Browse shops</h2>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchTerm"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
 
 <table class="table">
     <thead>
@@ -22,6 +35,16 @@
             <td>@shop.Location</td>
             <td>@shop.Soup</td>
             <td>@shop.Rating</td>
+            <td>
+                <a class="btn" asp-page="./Detail" asp-route-shopId="@shop.Id">
+                    <i class="glyphicon glyphicon-zoom-in"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn" asp-page="./Edit" asp-route-shopId="@shop.Id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
         </tr>
     }
 </table>

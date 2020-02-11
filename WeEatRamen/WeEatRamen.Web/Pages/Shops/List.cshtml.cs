@@ -12,6 +12,9 @@ namespace WeEatRamen.Web
     public class ListModel : PageModel
     {
         private IRepository<Shop> _db;
+
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
         public IEnumerable<Shop> Shops { get; set; }
 
         public ListModel(IRepository<Shop> db)
@@ -21,7 +24,7 @@ namespace WeEatRamen.Web
 
         public void OnGet()
         {
-            Shops = _db.GetAll();
+            Shops = _db.GetAllByName(SearchTerm);
         }
     }
 }

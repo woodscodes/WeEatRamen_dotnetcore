@@ -1,0 +1,34 @@
+﻿@page "{shopId:int}"
+@model WeEatRamen.Web.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Editing @Model.Shop.Name</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Shop.Id" />
+
+    <div class="form-group">
+        <label asp-for="Shop.Name"></label>
+        <input asp-for="Shop.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Shop.Location"></label>
+        <input asp-for="Shop.Location" class="form-control" />
+    </div>  
+    
+    <div class="form-group">
+        <label asp-for="Shop.Soup"></label>
+        <select class="form-control" asp-for="Shop.Soup" asp-items="@Model.SoupTypes">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Shop.Description"></label>
+        <textarea asp-for="Shop.Description" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

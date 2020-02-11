@@ -22,16 +22,39 @@ namespace WeEatRamen.Data.Infrastructure.Repositories
             };
         }
 
-        public IEnumerable<Shop> GetAll()
+        public int Commit()
+        {
+            return 0;
+        }
+
+        public IEnumerable<Shop> GetAllByName(string name = null)
         {
             return from s in _db
+                   where string.IsNullOrEmpty(name) || s.Name.StartsWith(name)
                    orderby s.Name
                    select s;
         }
 
         public Shop GetById(int id)
         {
-            throw new NotImplementedException();
+            return _db.SingleOrDefault(s => s.Id == id);
+        }
+
+        public Shop Update(Shop updatedShop)
+        {
+            var shop = _db.SingleOrDefault(s => s.Id == updatedShop.Id);
+
+            if(shop != null)
+            {
+                shop.Name = updatedShop.Name;
+                shop.Location = updatedShop.Location;
+                shop.Soup = updatedShop.Soup;
+                //shop.Rating = updatedShop.Rating;
+                //shop.ImgUrl = updatedShop.ImgUrl;
+                shop.Description = updatedShop.Description;
+            }
+
+            return shop;
         }
     }
 }

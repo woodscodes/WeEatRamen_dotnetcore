@@ -1,0 +1,25 @@
+﻿@page "{shopId:int}"
+@model WeEatRamen.Web.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>@Model.Shop.Name</h2>
+
+<div>
+    Location @Model.Shop.Location
+</div>
+
+<div>
+    Soup base @Model.Shop.Soup
+</div>
+
+<div>
+    Rating @Model.Shop.Rating
+</div>
+
+<div>
+    Description @Model.Shop.Description
+</div>
+
+<a asp-page="./List">Return to list</a>
