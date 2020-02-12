@@ -34,6 +34,16 @@ namespace WeEatRamen.Data.Infrastructure.Repositories
             return newShop;
         }
 
+        public Shop Delete(int id)
+        {
+            var shopToDelete = _db.FirstOrDefault(s => s.Id == id);
+
+            if (shopToDelete != null)
+                _db.Remove(shopToDelete);
+
+            return shopToDelete;
+        }
+
         public IEnumerable<Shop> GetAllByName(string name = null)
         {
             return from s in _db

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WeEatRamen.Core.Models;
+using WeEatRamen.Data.Infrastructure.Context;
 using WeEatRamen.Data.Infrastructure.Contracts;
 using WeEatRamen.Data.Infrastructure.Repositories;
 
@@ -27,8 +29,13 @@ namespace WeEatRamen.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IRepository<Shop>, InMemoryRepository>();
+            services.AddScoped<IRepository<Shop>, SqlRepository>();
 
+            services.AddDbContextPool<WeEatRamenDbContext>(options =>
+            {
+               options.UseSqlServer(Configuration.GetConnectionString("WeEatRamenDb"));
+            });
+            
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

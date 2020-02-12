@@ -10,6 +10,7 @@ namespace WeEatRamen.Data.Infrastructure.Contracts
         T GetById(int id);
         T Update(T updated);
         T Create(T newT);
+        T Delete(int id);
         int Commit();
     }
 }
