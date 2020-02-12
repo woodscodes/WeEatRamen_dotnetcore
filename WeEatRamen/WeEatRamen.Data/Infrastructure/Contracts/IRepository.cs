@@ -9,6 +9,7 @@ namespace WeEatRamen.Data.Infrastructure.Contracts
         IEnumerable<T> GetAllByName(string name);
         T GetById(int id);
         T Update(T updated);
+        T Create(T newT);
         int Commit();
     }
 }

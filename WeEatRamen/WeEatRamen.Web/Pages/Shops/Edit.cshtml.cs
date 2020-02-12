@@ -18,8 +18,7 @@ namespace WeEatRamen.Web
 
         [BindProperty]
         public Shop Shop { get; set; }
-        public IEnumerable<SelectListItem> SoupTypes { get; set; }
-
+        public IEnumerable<SelectListItem> SoupTypes { get; set; }        
 
         public EditModel(IRepository<Shop> db, IHtmlHelper helper)
         {
@@ -27,27 +26,40 @@ namespace WeEatRamen.Web
             _helper = helper;
         }
 
-        public IActionResult OnGet(int shopId)
+        public IActionResult OnGet(int? shopId)
         {
             SoupTypes = _helper.GetEnumSelectList<SoupBase>();
-            Shop = _db.GetById(shopId);
 
-            if (Shop != null)
-                return Page();
+            if (shopId.HasValue)
+                Shop = _db.GetById(shopId.Value);
             else
-                return RedirectToPage("./NotFound");
+                Shop = new Shop();
+
+            return Page();
         }
 
         public IActionResult OnPost()
         {
-            SoupTypes = _helper.GetEnumSelectList<SoupBase>();
 
-            if(ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
-                _db.Update(Shop);
-                return RedirectToPage("./Detail", new { shopId = Shop.Id });
+                SoupTypes = _helper.GetEnumSelectList<SoupBase>();
+                return Page();  
             }
-            return Page();
+
+            if (Shop.Id > 0)
+            {
+                _db.Update(Shop);                
+            }
+            else
+                _db.Create(Shop);
+
+            _db.Commit();
+
+            TempData["Message"] = "The shop was saved!";
+
+            return RedirectToPage("./Detail", new { shopId = Shop.Id });
+
         }
     }
 }

@@ -14,6 +14,8 @@ namespace WeEatRamen.Web
         private readonly IRepository<Shop> _db;
 
         public Shop Shop { get; set; }
+        [TempData]
+        public string Message { get; set; }
 
         public DetailModel(IRepository<Shop> db)
         {

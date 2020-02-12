@@ -27,6 +27,13 @@ namespace WeEatRamen.Data.Infrastructure.Repositories
             return 0;
         }
 
+        public Shop Create(Shop newShop)
+        {
+            _db.Add(newShop);
+            newShop.Id = _db.Max(s => s.Id) + 1;
+            return newShop;
+        }
+
         public IEnumerable<Shop> GetAllByName(string name = null)
         {
             return from s in _db
