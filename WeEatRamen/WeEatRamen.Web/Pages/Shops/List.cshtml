@@ -7,7 +7,7 @@
 
 <h2>Browse shops <a class="btn btn-sm btn-primary" asp-page="./Edit">Add new</a></h2>
 
-@if(Model.Message != null)
+@if (Model.Message != null)
 {
     <div class="alert alert-danger">
         @Model.Message
@@ -26,13 +26,6 @@
     </div>
 </form>
 
-@foreach (var shop in @Model.Shops) 
-{
-    <partial name="_Shop" model="shop"/>
-}
-
-
-<!--
 <table class="table">
     <thead>
         <tr>
@@ -47,26 +40,21 @@
     </thead>
     @foreach (var shop in Model.Shops)
     {
-<tr>
-    <td>@shop.Name</td>
-    <td>@shop.Location</td>
-    <td>@shop.Soup</td>
-    <td>@shop.Rating</td>
-    <td>
-        <a class="btn" asp-page="./Detail" asp-route-shopId="@shop.Id">
-            <i class="glyphicon glyphicon-zoom-in"></i>
-        </a>
-    </td>
-    <td>
-        <a class="btn" asp-page="./Edit" asp-route-shopId="@shop.Id">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-    </td>
-    <td>
-        <a class="btn" asp-page="./Delete" asp-route-shopId="@shop.Id">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
-    </td>
-</tr>
+        <tr>
+            <td><a asp-page="./Detail" asp-route-shopId="@shop.Id">@shop.Name</a></td>
+            <td>@shop.Location</td>
+            <td>@shop.Soup</td>
+            <td>@shop.Rating</td>
+            <td>
+                <a class="btn" asp-page="./Edit" asp-route-shopId="@shop.Id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn" asp-page="./Delete" asp-route-shopId="@shop.Id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
     }
-</table>-->
+</table>

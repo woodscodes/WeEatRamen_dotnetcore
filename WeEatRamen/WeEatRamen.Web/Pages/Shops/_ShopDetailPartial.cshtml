@@ -1,0 +1,26 @@
+﻿@using WeEatRamen.Core.Models
+@model Shop
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>@Model.Name</h3>
+        <a class="btn" asp-page="./Edit" asp-route-shopId="@Model.Id">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" asp-page="./Delete" asp-route-shopId="@Model.Id">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div class="panel-body">
+        <p>This shop's soup base is: @Model.Soup</p>
+        <p><i class="glyphicon glyphicon-map-marker"></i> @Model.Location</p>
+        <p><i class="glyphicon glyphicon-star-empty"></i> @Model.Rating of 5</p>        
+    </div>
+    <div class="panel-footer">
+        <h4>About this shop</h4>
+        <p>@Model.Description</p>
+    </div>
+</div>
