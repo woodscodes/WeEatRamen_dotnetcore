@@ -15,7 +15,11 @@ namespace WeEatRamen.Web
 
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
+
         public IEnumerable<Shop> Shops { get; set; }
+
+        [TempData]
+        public string Message { get; set; }
 
         public ListModel(IRepository<Shop> db)
         {

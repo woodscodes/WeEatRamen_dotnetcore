@@ -12,5 +12,6 @@ namespace WeEatRamen.Data.Infrastructure.Contracts
         T Create(T newT);
         T Delete(int id);
         int Commit();
+        int CountAllTs();
     }
 }

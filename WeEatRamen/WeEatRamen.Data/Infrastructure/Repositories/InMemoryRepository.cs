@@ -27,6 +27,11 @@ namespace WeEatRamen.Data.Infrastructure.Repositories
             return 0;
         }
 
+        public int CountAllTs()
+        {
+            return _db.Count();
+        }
+
         public Shop Create(Shop newShop)
         {
             _db.Add(newShop);

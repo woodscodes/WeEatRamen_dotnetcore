@@ -56,7 +56,7 @@ namespace WeEatRamen.Web
 
             _db.Commit();
 
-            TempData["Message"] = "The shop was saved!";
+            TempData["Message"] = "Shop saved!";
 
             return RedirectToPage("./Detail", new { shopId = Shop.Id });
 

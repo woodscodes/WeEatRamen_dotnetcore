@@ -1,0 +1,17 @@
+﻿@page "{shopId:int}"
+@model WeEatRamen.Web.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Are you sure you want to delete @Model.ShopToDelete.Name?</h2>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Yes</button>
+    <a class="btn btn-sm" asp-page="./List">Back to list</a>
+</form>
+
+
+
+
+
